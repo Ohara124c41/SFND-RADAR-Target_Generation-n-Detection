@@ -36,17 +36,6 @@ Tasks:
 - Plot the output
 - There should be a peak at the initial position of the target
 
-#### 2D CFAR
-
-Tasks:
-- Determine the number of Training cells for each dimension. Similarly, pick the number of guard cells.
-- Slide the cell under test across the complete matrix. Make sure the CUT has margin for Training and Guard cells from the edges.
-- For every iteration sum the signal level within all the training cells. To sum convert the value from logarithmic to linear using db2pow function.
-- Average the summed values for all of the training cells used. After averaging convert it back to logarithmic using pow2db.
-- Further add the offset to it to determine the threshold.
-- Next, compare the signal under CUT against this threshold.
-- If the CUT level > threshold assign it a value of 1, else equate it to 0.
-
 
 ## Dependencies for Running Locally
 * Matlab 2018B or higher.
@@ -186,6 +175,24 @@ axis ([0 200 0 1]); %[range, resolution]
 > Task: Implement the 2D CFAR process on the output of 2D FFT operation, i.e., the Range Doppler Map.
 >
 > Criteria: The 2D CFAR processing should be able to suppress the noise and separate the target signal. The output should match the image shared in walkthrough.
+
+#### 2D CFAR
+
+Tasks:
+- Determine the number of Training cells for each dimension. Similarly, pick the number of guard cells.
+- Slide the cell under test across the complete matrix. Make sure the CUT has margin for Training and Guard cells from the edges.
+- For every iteration sum the signal level within all the training cells. To sum convert the value from logarithmic to linear using db2pow function.
+- Average the summed values for all of the training cells used. After averaging convert it back to logarithmic using pow2db.
+- Further add the offset to it to determine the threshold.
+- Next, compare the signal under CUT against this threshold.
+- If the CUT level > threshold assign it a value of 1, else equate it to 0.
+
+#### Guard Cell, Training Cell, and Offset Selection
+The initial selection was based on the classroom instructions. Adjustments were made by trial-and-error as the program compiles quickly. The offset was initially chosen at lower values (e.g. 1.0) but performed the best at 10 based on the nC and nR values selected.
+
+#### Suppression of Non-Threshed cells
+To maintain the map size, two loops were created for the combined contributions of the guard cells and the combined contributions of the training cells, respectively. This was completed over the entire set of ranges and cells (nR and nC).
+
 
 ```c
 
