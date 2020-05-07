@@ -24,19 +24,6 @@ This project has the following tasks:
 You will provide the initial range and velocity of the target. Range cannot exceed the max value of 200m and velocity can be any value in the range of -70 to + 70 m/s.
 
 
-#### FFT Operation
-
-Tasks:
-- Implement the 1D FFT on the Mixed Signal
-- Reshape the vector into Nr*Nd array.
-- Run the FFT on the beat signal along the range bins dimension (Nr)
-- Normalize the FFT output.
-- Take the absolute value of that output.
-- Keep one half of the signal
-- Plot the output
-- There should be a peak at the initial position of the target
-
-
 ## Dependencies for Running Locally
 * Matlab 2018B or higher.
 
@@ -133,6 +120,18 @@ end
 >
 > Criteria: A correct implementation should generate a peak at the correct range, i.e., the initial position of target assigned with an error margin of +/- 10 meters.
 
+#### Tasks
+
+Tasks:
+- Implement the 1D FFT on the Mixed Signal
+- Reshape the vector into Nr*Nd array.
+- Run the FFT on the beat signal along the range bins dimension (Nr)
+- Normalize the FFT output.
+- Take the absolute value of that output.
+- Keep one half of the signal
+- Plot the output
+- There should be a peak at the initial position of the target
+
 
 ```c
 %{
@@ -176,7 +175,7 @@ axis ([0 200 0 1]); %[range, resolution]
 >
 > Criteria: The 2D CFAR processing should be able to suppress the noise and separate the target signal. The output should match the image shared in walkthrough.
 
-#### 2D CFAR
+#### Steps
 
 Tasks:
 - Determine the number of Training cells for each dimension. Similarly, pick the number of guard cells.
